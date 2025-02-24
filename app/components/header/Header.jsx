@@ -1,64 +1,114 @@
 "use client";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import {
-  IconBook,
-  IconChartPie3,
+  IconAdjustments,
+  IconBrandFacebook,
+  IconBrandGmail,
+  IconBrandGoogle,
   IconChevronDown,
-  IconCode,
-  IconCoin,
-  IconFingerprint,
-  IconNotification,
+  IconMoon,
 } from "@tabler/icons-react";
 import {
-  Anchor,
+  ActionIcon,
   Box,
   Burger,
   Button,
   Center,
-  Collapse,
   Divider,
   Drawer,
   Group,
-  HoverCard,
   ScrollArea,
-  SimpleGrid,
-  Text,
-  ThemeIcon,
-  Title,
   UnstyledButton,
+  useComputedColorScheme,
+  useMantineColorScheme,
   useMantineTheme,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import classes from "./Header.module.css";
-
-
+import Link from "next/link";
+import Logo from "../logo/Logo";
 
 export function Header() {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false);
-  const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
-  const theme = useMantineTheme();
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [showHeader, setShowHeader] = useState(true);
+  const { colorScheme, setColorScheme } = useMantineColorScheme();
 
-  
+  const computedColorScheme = useComputedColorScheme("light");
+
+  const toggleColorScheme = () => {
+    setColorScheme(computedColorScheme === "dark" ? "light" : "dark");
+  };
+
   return (
-    <Box pb={10} >
-      <header className={classes.header}>
-        <Group px={100} justify="space-between" h="100%">
-          <Title c={"cyan.9"} order={3}>SKILLEDBase</Title>
-          <Group h="100%" gap={0} visibleFrom="sm">
-            <a href="#" className={classes.link}>
-              For Developers
-            </a>
+    <Box pb={10}>
+      <Box
+        style={{
+          backgroundColor: "rgba(255, 255, 255, 0.7)", // Semi-transparent background
+          backdropFilter: "blur(20px)", // Blurs background content
+          WebkitBackdropFilter: "blur(10px)", // Safari support
+          position: "fixed",
+          width: "100%",
+          top: 0,
+          zIndex: 1000,
+        }}
+      >
+        <Group
+          px={20}
+          // px={{ base: 10, sm: 50, md: 70, lg: 120 }}
+          justify="space-between"
+          h="100%"
+        >
+          <Logo />
+          <Group h="100%" visibleFrom="sm">
+            <Link href="/" className={classes.link}>
+              Jobs
+            </Link>
 
-            <a href="#" className={classes.link}>
-              For Recruiters
-            </a>
-            <a href="/about-us" className={classes.link}>
+            <Link href="/recruiters" className={classes.link}>
+              Companies
+            </Link>
+            <Link href="/talent" className={classes.link}>
+              Talent
+            </Link>
+            <Link href="/about-us" className={classes.link}>
+              Advice
+            </Link>
+            <Link href="/about-us" className={classes.link}>
               About Us
-            </a>
+            </Link>
           </Group>
-          <Group visibleFrom="sm">
-            <Button variant="default">Log in</Button>
-            <Button>Sign up</Button>
+          <Group gap="xl">
+            <Group mr={"lg"} visibleFrom="sm">
+              <ActionIcon aria-label="Facebook">
+                <IconBrandFacebook
+                  style={{ width: "70%", height: "70%" }}
+                  stroke={1.5}
+                />
+              </ActionIcon>
+              <ActionIcon aria-label="Gmail">
+                <IconBrandGmail
+                  style={{ width: "70%", height: "70%" }}
+                  stroke={1.5}
+                />
+              </ActionIcon>
+              <ActionIcon aria-label="Dark Mode">
+                <IconMoon
+                  style={{ width: "70%", height: "70%" }}
+                  stroke={1.5}
+                />
+              </ActionIcon>
+            </Group>
+            <Group visibleFrom="sm">
+              <Link href={"/login"}>
+                <Button variant="default">Log in</Button>
+              </Link>
+              <Link href={"/signup"}>
+                <Button>Sign up</Button>
+              </Link>
+            </Group>
           </Group>
           <Burger
             opened={drawerOpened}
@@ -66,37 +116,31 @@ export function Header() {
             hiddenFrom="sm"
           />
         </Group>
-      </header>
+      </Box>
 
+      {/* Drawer for Mobile Navigation */}
       <Drawer
-        opened={drawerOpened}
-        onClose={closeDrawer}
         size="100%"
         padding="md"
-        title="Navigation"
         hiddenFrom="sm"
         zIndex={1000000}
+        title="Main Menu"
+        opened={drawerOpened}
+        onClose={closeDrawer}
       >
         <ScrollArea h="calc(100vh - 80px" mx="-md">
           <Divider my="sm" />
 
-          <a href="#" className={classes.link}>
-            Home
-          </a>
-          <UnstyledButton className={classes.link} onClick={toggleLinks}>
-            <Center inline>
-              <Box component="span" mr={5}>
-                Features
-              </Box>
-              <IconChevronDown size={16} color={theme.colors.blue[6]} />
-            </Center>
-          </UnstyledButton>
-          <a href="#" className={classes.link}>
-            Learn
-          </a>
-          <a href="#" className={classes.link}>
-            Academy
-          </a>
+          <Link href="/" className={classes.link}>
+            For Developers
+          </Link>
+
+          <Link href="/recruiters" className={classes.link}>
+            For Recruiters
+          </Link>
+          <Link href="/about-us" className={classes.link}>
+            About Us
+          </Link>
 
           <Divider my="sm" />
 

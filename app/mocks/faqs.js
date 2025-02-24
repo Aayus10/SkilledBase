@@ -30,4 +30,10 @@ export const faqs = [
     answer:
       "No, applying for jobs on our platform is completely free for developers. However, we offer premium features like resume boosting and profile highlighting for increased visibility.",
   },
+  {
+    id: 6,
+    question: "How can I update my profile information?",
+    answer:
+      "You can update your profile by logging into your account, navigating to the 'Profile' section, and editing your details. Ensure that your skills, experience, and resume are always up-to-date for better job recommendations.",
+  },
 ];

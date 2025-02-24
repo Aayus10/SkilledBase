@@ -1,23 +1,20 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import {
-  ActionIcon,
+  px,
   Box,
-  Center,
-  Container,
   Flex,
+  Text,
   Group,
   Stack,
-  Text,
-  UnstyledButton,
-  px,
+  Center,
+  ActionIcon,
   useMantineTheme,
 } from "@mantine/core";
-import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
-import { motion } from "motion/react";
-import { useEffect, useRef, useState } from "react";
 import { JumboTitle } from "../jumbotitle/JumboTitle";
 import { GalleryCard } from "../gallerycard/GalleryCard";
+import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 
 export const CVMaker = ({
   galleryItems,
@@ -161,31 +158,16 @@ export const CVMaker = ({
           <GutterBox w={gutterBoxWidth} />
           {items.map((item, index) => {
             return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0.0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.8,
-                  delay: 0.2 * index,
-                  ease: "easeInOut",
-                }}
-                viewport={{ once: true }}
-                style={{ height: "100%" }}
-              >
-                <UnstyledButton
-                  onClick={() => onClickItem?.(index)}
-                  style={{ scrollSnapAlign: "center" }}
-                >
-                  <GalleryCard
-                    item={item}
-                    backgroundImageSizes="353px"
-                    backgroundImageAlt=""
-                    w={{ base: 240, md: 353 }}
-                    h={{ base: 320, md: 471 }}
-                  />
-                </UnstyledButton>
-              </motion.div>
+              <GalleryCard
+                onClickItem={onClickItem}
+                key={item.title}
+                index={index}
+                item={item}
+                backgroundImageSizes="353px"
+                backgroundImageAlt=""
+                w={{ base: 240, md: 353 }}
+                h={{ base: 320, md: 471 }}
+              />
             );
           })}
           <GutterBox w={gutterBoxWidth} />

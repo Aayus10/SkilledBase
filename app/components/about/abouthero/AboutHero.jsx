@@ -1,25 +1,19 @@
 "use client";
 import {
-  ActionIcon,
-  Avatar,
-  AvatarGroup,
-  Badge,
   Box,
-  Container,
-  ContainerProps,
   Flex,
-  Image,
-  Rating,
-  Stack,
   Text,
-  TextInput,
+  Image,
+  Stack,
+  Avatar,
+  Rating,
+  Container,
+  AvatarGroup,
 } from "@mantine/core";
-import { IconArrowRight } from "@tabler/icons-react";
 import { motion } from "motion/react";
-import NextImage from "next/image";
-import classes from "./AboutHero.module.css";
 import { JumboTitle } from "../../jumbotitle/JumboTitle";
 
+import classes from "./AboutHero.module.css";
 export const AboutHero = ({
   title = "Our Mission",
   description = "Welcome to SkilledBase! We're on a mission to revolutionize the recruitment process and empower professionals to shape the future of technology. Join us and take the next step in your career journey with the best opportunities that fit your skills and passion!",
@@ -31,15 +25,15 @@ export const AboutHero = ({
 }) => (
   <Container
     pos="relative"
-    h="100vh"
-    mah={950}
+    h="90vh"
+    mah={800}
     style={{ overflow: "hidden" }}
     fluid
   >
     <Container
       component="section"
-      h="100vh"
-      mah={950}
+      h="90vh"
+      mah={800}
       mx="auto"
       size="xl"
       {...containerProps}
@@ -55,19 +49,7 @@ export const AboutHero = ({
         style={{ pointerEvents: "none", userSelect: "none" }}
         darkHidden
       />
-      <Image
-        component={NextImage}
-        pos="absolute"
-        inset={0}
-        src="/bg/kubadesign-19-dark.jpg"
-        mx="auto"
-        alt=""
-        width={1784}
-        height={1000}
-        style={{ pointerEvents: "none", userSelect: "none" }}
-        priority
-        lightHidden
-      />
+
       <Box
         pos="absolute"
         top={0}
@@ -78,7 +60,7 @@ export const AboutHero = ({
       />
       <Flex h="100%" align="center" pos="relative" justify="center">
         <Stack
-          mt={-150}
+          mt={-50}
           maw="var(--mantine-breakpoint-md)"
           align="center"
           gap="lg"
@@ -106,6 +88,7 @@ export const AboutHero = ({
             viewport={{ once: true }}
           >
             <Text
+              mt={30}
               ta="center"
               maw="var(--mantine-breakpoint-lg)"
               fz="xl"

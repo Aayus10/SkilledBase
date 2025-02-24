@@ -6,9 +6,11 @@ import { Footer } from "../components/footer/Footer";
 export default function HomeLayout({ children }) {
   return (
     <Box>
-      <Header />
+      <Box >
+        <Header />
+      </Box>
       {children}
-      <Footer/>
+      <Footer />
     </Box>
   );
 }
