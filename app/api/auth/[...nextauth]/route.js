@@ -30,9 +30,13 @@ export const authOptions = {
 
         const data = await response.json();
 
-        // If successful and token is received, return token
+        // If successful and token is received, return token along with user info
         if (response.ok && data.token) {
-          return { token: data.token }; // Only return the token
+          return {
+            token: data.token,
+            email: credentials.email, // Add email
+            name: data.name, // Add name
+          };
         } else {
           throw new Error(data.message || "Invalid credentials");
         }
@@ -41,18 +45,26 @@ export const authOptions = {
   ],
   callbacks: {
     async jwt({ token, user }) {
-      // Store token in JWT if it's present from the authorize method
+      // Store token, name, and email in JWT if available
       if (user) {
-        token.token = user.token; // Only store the token
+        token.token = user.token;
+        token.email = user.email; // Add email to token
+        token.name = user.name; // Add name to token
       }
       return token;
     },
     async session({ session, token }) {
-      // Attach the token to the session object
+      // Attach token, name, and email to session object
       if (token) {
-        session.user.token = token.token; // Store only token in session
+        session.user.token = token.token;
+        session.user.email = token.email; // Add email to session
+        session.user.name = token.name; // Add name to session
       }
       return session;
+    },
+    async redirect({ url, baseUrl }) {
+      // Redirect to home page ("/") after successful login
+      return baseUrl; // Redirect to the homepage
     },
   },
   session: {

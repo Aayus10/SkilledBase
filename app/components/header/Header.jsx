@@ -28,12 +28,13 @@ import { useDisclosure } from "@mantine/hooks";
 import classes from "./Header.module.css";
 import Link from "next/link";
 import Logo from "../logo/Logo";
+import { UserMenu } from "../profile-overview/user-menu/UserMenu";
+import { useSession } from "next-auth/react";
 
-export function Header() {
+export function Header({ session, router }) {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [showHeader, setShowHeader] = useState(true);
+
   const { colorScheme, setColorScheme } = useMantineColorScheme();
 
   const computedColorScheme = useComputedColorScheme("light");
@@ -56,8 +57,7 @@ export function Header() {
         }}
       >
         <Group
-          px={20}
-          // px={{ base: 10, sm: 50, md: 70, lg: 120 }}
+          px={{ base: 10, sm: 50, md: 70, lg: 120 }}
           justify="space-between"
           h="100%"
         >
@@ -80,28 +80,13 @@ export function Header() {
               About Us
             </Link>
           </Group>
-          <Group gap="xl">
-            <Group mr={"lg"} visibleFrom="sm">
-              <ActionIcon aria-label="Facebook">
-                <IconBrandFacebook
-                  style={{ width: "70%", height: "70%" }}
-                  stroke={1.5}
-                />
-              </ActionIcon>
-              <ActionIcon aria-label="Gmail">
-                <IconBrandGmail
-                  style={{ width: "70%", height: "70%" }}
-                  stroke={1.5}
-                />
-              </ActionIcon>
-              <ActionIcon aria-label="Dark Mode">
-                <IconMoon
-                  style={{ width: "70%", height: "70%" }}
-                  stroke={1.5}
-                />
-              </ActionIcon>
+
+          {session ? (
+            <Group>
+              <UserMenu session={session} router={router} />
             </Group>
-            <Group visibleFrom="sm">
+          ) : (
+            <Group gap="xl" visibleFrom="sm">
               <Link href={"/login"}>
                 <Button variant="default">Log in</Button>
               </Link>
@@ -109,13 +94,9 @@ export function Header() {
                 <Button>Sign up</Button>
               </Link>
             </Group>
-          </Group>
-          <Burger
-            opened={drawerOpened}
-            onClick={toggleDrawer}
-            hiddenFrom="sm"
-          />
+          )}
         </Group>
+        <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="sm" />
       </Box>
 
       {/* Drawer for Mobile Navigation */}

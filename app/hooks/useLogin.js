@@ -10,7 +10,7 @@ export const useLogin = () => {
       const result = await signIn("credentials", {
         email: email,
         password: password,
-        redirect: false,
+        redirect: "/",
       });
       return result;
     },

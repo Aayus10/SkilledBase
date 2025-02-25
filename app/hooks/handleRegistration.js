@@ -6,8 +6,7 @@ export const useRegister = () => {
   return useMutation({
     mutationFn: async (values) => {
       const { fullName, username, email, contact, password } = values;
-      console.log(values);
-      await fetch(`http://192.168.1.15:4000/register`, {
+      await fetch(`${API_URL}/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

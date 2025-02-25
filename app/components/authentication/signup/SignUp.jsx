@@ -26,7 +26,6 @@ export function SignUp({ title }) {
   const handleSubmit = (values) => {
     mutate(values);
   };
-  console.log(data);
 
   return (
     <Container size={500} mb={40}>
