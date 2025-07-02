@@ -26,7 +26,6 @@ export function Login() {
   const { mutate, data } = useLogin();
   const handleSubmit = (values) => {
     mutate(values);
-    console.log(data);
   };
 
   return (

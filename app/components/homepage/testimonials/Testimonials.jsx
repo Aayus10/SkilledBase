@@ -12,7 +12,7 @@ import {
   Stack,
   Text,
 } from "@mantine/core";
-import { JumboTitle } from "../jumbotitle/JumboTitle";
+import { JumboTitle } from "../../jumbotitle/JumboTitle";
 
 import classes from "./Testimonials.module.css";
 

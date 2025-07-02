@@ -2,6 +2,8 @@ import React from "react";
 import { UserNavbar } from "../components/user-dashboard/navbar/UserNavbar";
 import { Box, Grid, GridCol } from "@mantine/core";
 
+export const metadata = { title: "SkilledBase | User Dashboard" };
+
 export default function UserDashboardLayout({ children }) {
   return (
     <Grid style={{ overflow: "hidden" }}>

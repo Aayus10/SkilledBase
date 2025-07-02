@@ -13,9 +13,10 @@ import {
   IconSettings,
   IconSwitchHorizontal,
 } from "@tabler/icons-react";
-import { Code, Group } from "@mantine/core";
+import { Box, Burger, Code, Group } from "@mantine/core";
 import classes from "./UserNavbar.module.css";
 import Logo from "../../logo/Logo";
+import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 
 const data = [
   { link: "/", label: "Home", icon: IconHome },
@@ -29,6 +30,12 @@ const data = [
 
 export function UserNavbar() {
   const [active, setActive] = useState("Billing");
+  const [opened, { toggle, open }] = useDisclosure(true);
+  const isLargeScreen = useMediaQuery("(min-width: 1100px)");
+
+  if (isLargeScreen && !opened) {
+    open();
+  }
 
   const links = data.map((item) => (
     <a
@@ -47,34 +54,44 @@ export function UserNavbar() {
   ));
 
   return (
-    <nav className={classes.navbar}>
-      <div className={classes.navbarMain}>
-        <Group className={classes.header} justify="space-between">
-          <Logo />
-          <Code fw={700}>v3.1.2</Code>
-        </Group>
-        {links}
-      </div>
+    <Box
+      bg={"azure.2"}
+      style={{ zIndex: 1000 }}
+      pos={opened ? "fixed" : "relative"}
+    >
+      <Burger onClick={toggle} opened={opened} hiddenFrom="lg" />
+      <nav
+        style={{ display: opened || isLargeScreen ? "block" : "none" }}
+        className={classes.navbar}
+      >
+        <div className={classes.navbarMain}>
+          <Group className={classes.header} justify="space-between">
+            <Logo />
+            <Code fw={700}>v3.1.2</Code>
+          </Group>
+          {links}
+        </div>
 
-      <div className={classes.footer}>
-        <a
-          href="#"
-          className={classes.link}
-          onClick={(event) => event.preventDefault()}
-        >
-          <IconSwitchHorizontal className={classes.linkIcon} stroke={1.5} />
-          <span>Change account</span>
-        </a>
+        <div className={classes.footer}>
+          <a
+            href="#"
+            className={classes.link}
+            onClick={(event) => event.preventDefault()}
+          >
+            <IconSwitchHorizontal className={classes.linkIcon} stroke={1.5} />
+            <span>Change account</span>
+          </a>
 
-        <a
-          href="#"
-          className={classes.link}
-          onClick={(event) => event.preventDefault()}
-        >
-          <IconLogout className={classes.linkIcon} stroke={1.5} />
-          <span>Logout</span>
-        </a>
-      </div>
-    </nav>
+          <a
+            href="#"
+            className={classes.link}
+            onClick={(event) => event.preventDefault()}
+          >
+            <IconLogout className={classes.linkIcon} stroke={1.5} />
+            <span>Logout</span>
+          </a>
+        </div>
+      </nav>
+    </Box>
   );
 }

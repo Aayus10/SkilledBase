@@ -17,7 +17,7 @@ export const authOptions = {
       },
       async authorize(credentials) {
         // Make request to the backend
-        const response = await fetch(`${API_URL}/login`, {
+        const response = await fetch(`${API_URL}/employee/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

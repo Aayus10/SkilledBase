@@ -33,8 +33,8 @@ import {
 } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "motion/react";
 import { ReactNode, useEffect, useState } from "react";
-import { JumboTitle } from "../jumbotitle/JumboTitle";
-import { Marquee } from "../marquee/Marquee";
+import { JumboTitle } from "../../jumbotitle/JumboTitle";
+import { Marquee } from "../../marquee/Marquee";
 
 const ITEMS = [
   {

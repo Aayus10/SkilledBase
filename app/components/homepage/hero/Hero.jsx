@@ -15,7 +15,7 @@ import { IconArrowRight } from "@tabler/icons-react";
 import { motion } from "motion/react";
 import NextLink from "next/link";
 import classes from "./Hero.module.css";
-import { JumboTitle } from "../jumbotitle/JumboTitle";
+import { JumboTitle } from "../../jumbotitle/JumboTitle";
 
 export const Hero = ({
   badge,

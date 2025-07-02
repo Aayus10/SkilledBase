@@ -2,7 +2,7 @@
 
 import NextLink from "next/link";
 import { JobCard } from "./JobCard";
-import { JumboTitle } from "../jumbotitle/JumboTitle";
+import { JumboTitle } from "../../jumbotitle/JumboTitle";
 import {
   Box,
   Button,

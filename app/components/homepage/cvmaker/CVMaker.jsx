@@ -12,9 +12,9 @@ import {
   ActionIcon,
   useMantineTheme,
 } from "@mantine/core";
-import { JumboTitle } from "../jumbotitle/JumboTitle";
-import { GalleryCard } from "../gallerycard/GalleryCard";
 import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
+import { GalleryCard } from "../../gallerycard/GalleryCard";
+import { JumboTitle } from "../../jumbotitle/JumboTitle";
 
 export const CVMaker = ({
   galleryItems,

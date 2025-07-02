@@ -1,7 +1,7 @@
 "use client";
 
+import { JumboTitle } from "../../jumbotitle/JumboTitle";
 import { FeatureCell } from "./FeatureCell";
-import { JumboTitle } from "../jumbotitle/JumboTitle";
 import { Badge, Box, Grid, Stack, Text } from "@mantine/core";
 
 export const Features = ({

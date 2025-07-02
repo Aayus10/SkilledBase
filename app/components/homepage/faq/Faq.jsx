@@ -1,6 +1,6 @@
 import { Anchor, Box, Container, Flex, Stack, Text } from "@mantine/core";
 import { ReactNode } from "react";
-import { JumboTitle } from "../jumbotitle/JumboTitle";
+import { JumboTitle } from "../../jumbotitle/JumboTitle";
 
 const FaqCell = ({ question, answer }) => (
   <Box

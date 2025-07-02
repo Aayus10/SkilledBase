@@ -1,19 +1,20 @@
 import React, { Suspense } from "react";
 import { Box } from "@mantine/core";
 
-import { heroImages } from "../mocks/heroImages";
-import { Hero } from "../components/hero/Hero";
-import { Features } from "../components/features/Features";
 import { features } from "../mocks/features";
-import { CVMaker } from "../components/cvmaker/CVMaker";
+import { heroImages } from "../mocks/heroImages";
 import { galleryItems } from "../mocks/galleryItems";
-import { JobOverview } from "../components/joboverview/JobOverview";
 import { jobs } from "../mocks/jobs";
-import { Faq } from "../components/faq/Faq";
 import { faqs } from "../mocks/faqs";
+
 import Loading from "./loading";
-import { Clients } from "../components/clients/Clients";
-import { Testimonials } from "../components/testimonials/Testimonials";
+import { Hero } from "../components/homepage/hero/Hero";
+import { Clients } from "../components/homepage/clients/Clients";
+import { CVMaker } from "../components/homepage/cvmaker/CVMaker";
+import { JobOverview } from "../components/homepage/joboverview/JobOverview";
+import { Testimonials } from "../components/homepage/testimonials/Testimonials";
+import { Faq } from "../components/homepage/faq/Faq";
+import { Features } from "../components/homepage/features/Features";
 
 export const metadata = {
   title: "SkilledBase | For Developers",
@@ -31,12 +32,12 @@ export default function HomePage() {
         />
         <Box px={{ base: 10, sm: 50, md: 70, lg: 100 }}>
           <Clients />
-          <Features
+          {/* <Features
             features={features}
             badge="Power Up Your Hiring"
             title="Unlock a World of Top Candidates"
             description="Source, screen, and hire the best talent effortlessly. We help you build a high-performing team that drives success."
-          />
+          /> */}
           <CVMaker galleryItems={galleryItems} />
           <JobOverview jobs={jobs} />
           <Testimonials />

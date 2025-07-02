@@ -6,7 +6,7 @@ export const useRegister = () => {
   return useMutation({
     mutationFn: async (values) => {
       const { fullName, username, email, contact, password } = values;
-      await fetch(`${API_URL}/register`, {
+      await fetch(`${API_URL}/employee/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -21,7 +21,7 @@ export const useRegister = () => {
       });
     },
     onSuccess: (data) => {
-      alert(`Registration successful: ${data}`);
+      console.log(`Registration successful: ${data}`);
     },
     onError: (error) => {
       alert(`Registration failed: ${error.response?.data || error.message}`);
